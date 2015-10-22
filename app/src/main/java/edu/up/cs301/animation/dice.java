@@ -1,5 +1,6 @@
 package edu.up.cs301.animation;
 
+import android.graphics.Color;
 import android.view.SurfaceView;
 import android.view.View;
 
@@ -17,15 +18,16 @@ import android.widget.ImageButton;
  * Created by Grayson on 10/22/2015.
  */
 
-public class dice extends ImageButton implements View.OnLongClickListener {
+public class dice extends ImageButton{
 
 
         // instance variables
-        private Animator animator; // our animator
-        private AnimationThread animationThread = null; // thread to generate ticks
-        private Paint backgroundPaint = new Paint(); // painter for painting background
+       private Paint backgroundPaint = new Paint(); // painter for painting background
         private int flashCount; // counts down ticks for background-flash
         private Paint flashPaint; // has color for background flash
+        public boolean keep;
+        int dieNum;
+
 
         /**
          * Constructor for the AnimationSurface class. In order to be useful, an
@@ -39,6 +41,8 @@ public class dice extends ImageButton implements View.OnLongClickListener {
         public dice(Context context) {
             super(context);
             init();
+
+
         }// ctor
 
         /**
@@ -54,6 +58,7 @@ public class dice extends ImageButton implements View.OnLongClickListener {
         public dice(Context context, AttributeSet attrs) {
             super(context, attrs);
             init();
+
         }// ctor
 
         /**
@@ -63,200 +68,46 @@ public class dice extends ImageButton implements View.OnLongClickListener {
 
             // Tell the OS that *yes* I will draw stuff
             setWillNotDraw(false);
+            keep = false;
 
-            // initialize the animator instance variable animator-creation method
-            animator = createAnimator();
 
-            //Begin listening for touch events
-            this.setOnLongClickListener(this);
 
-            if (animator != null) {
-                startAnimation();
-            }
-        }// init
-
-        /**
-         * Starts the animation
-         */
-        private void startAnimation() {
-
-            // create and start a thread to generate "ticks" for the animator
-            // with the frequency that it desires
-            //this.animationThread = new AnimationThread(getHolder());
-            animationThread.start();
-
-            // Initialize the background color paint as instructed by the animator
-            backgroundPaint.setColor(animator.backgroundColor());
         }
 
-        /**
-         * Creates the animator for the object. If this method returns null, then it will
-         * be necessary to invoke the 'setAnimator' method before the animation can start.
-         * @return the animator
-         */
-        public Animator createAnimator() {
-            return null;
-        }
 
-        /**
-         * Sets and starts the animator for the AnimationSurface if it does not already
-         * have an animator.
-         *
-         * @param animator the animator to use.
-         */
-        public void setAnimator(Animator animator) {
-            if (this.animator == null) {
-                // set the animator
-                this.animator = animator;
-            }
-            if (this.animator != null) {
-                // start the animator
-                startAnimation();
-            }
-        }
+        public void onDraw(Canvas g)
+        {
+            Paint black = new Paint();
+            black.setColor(Color.BLACK);
+            dieNum = (int)(Math.random()*6 + 1);
+            switch (dieNum)
+            {
+                case 1: g.drawCircle(g.getHeight()/2,g.getWidth()/2,20, black);
+                    break;
+                case 2: g.drawCircle(40,40,20, black);
+                        g.drawCircle(g.getHeight()-40,g.getWidth()-40,20,black);
+                    break;
+                case 3: g.drawCircle(g.getHeight()/2,g.getWidth()/2,20, black);
+                        g.drawCircle(40, 40, 20, black);
+                        g.drawCircle(g.getHeight()-40,g.getWidth()-40,20,black);
+                    break;
+                case 5: g.drawCircle(g.getHeight()/2,g.getWidth()/2,20, black);
+                case 4: g.drawCircle(40,40,20, black);
+                        g.drawCircle(g.getHeight()-40,g.getWidth()-40,20,black);
+                        g.drawCircle(40,getWidth()-40,20, black);
+                        g.drawCircle(g.getHeight()-40,40,20,black);
+                    break;
+                case 6: g.drawCircle(40,40,20, black);
+                        g.drawCircle(g.getHeight()-40,g.getWidth()-40,20,black);
+                        g.drawCircle(40,getWidth()-40,20, black);
+                        g.drawCircle(g.getHeight()-40,40,20,black);
+                        g.drawCircle(getWidth()-40,getHeight()/2,20, black);
+                        g.drawCircle(40,getHeight()/2,20,black);
 
-        /**
-         * Causes the background color to flash (change color) for the specified amount of time.
-         * @param color
-         * 			the color to flash
-         * @param millis
-         * 			the number of milliseconds to flash
-         */
-        public void flash(int color, int millis) {
-            animationThread.flash(color, millis);
-        }
-
-    public boolean onLongClick(View view) {
-        if (animator != null) {
-            this.animator.onLongClick(view);
-        }
-        return true;
-    }
-
-    /**
-         * Thread subclass to control the game loop
-         *
-         * Code adapted from Android:How to Program by Deitel, et.al., first edition
-         * copyright (C)2013.
-         *
-         */
-        private class AnimationThread extends Thread {
-
-            // a reference to a SurfaveView's holder. This is used to "lock" the
-            // canvas when we want to write to it
-            private SurfaceHolder surfaceHolder;
-
-            // controls animation stop/go based upon instructions from the Animator
-            private boolean threadIsRunning = true;
-
-            /** ctor inits instance variables */
-            public AnimationThread(SurfaceHolder holder) {
-                surfaceHolder = holder;
-                setName("AnimationThread");
+                    break;
             }
 
-            /**
-             * causes this thread to pause for a given interval.
-             *
-             * @param interval
-             *            duration in milliseconds
-             */
-            private void sleep(int interval) {
-                try {
-                    Thread.sleep(interval); // use sleep to avoid busy wait
-                } catch (InterruptedException ie) {
-                    // don't care if we're interrupted
-                }
-            }// sleep
 
-            /**
-             * Causes the background to be changed ("flash") for the given period
-             * of time.
-             *
-             * @param color
-             * 			the color to flash
-             * @param millis
-             * 			the number of milliseconds for this the flash should occur
-             */
-            public void flash(int color, int millis) {
-                flashCount = millis; // set the flash count
-                flashPaint = new Paint(); // create painter ...
-                flashPaint.setColor(color); // ... with the appropriate color
-            }
-
-            /**
-             * This is the main animation loop. It calls the Animator's draw()
-             * method at regular intervals to creation the animation.
-             */
-            @Override
-            public void run() {
-
-                Canvas canvas = null;// ref to canvas animator draws upon
-                long lastTickEnded = 0; // when the last tick ended
-
-                while (threadIsRunning) {
-
-                    // stop if the animator asks for it
-                    if (animator.doQuit())
-                        break;
-
-                    // pause while the animator wishes it
-                    while (animator.doPause()) {
-                        sleep(animator.interval());
-                    }// while
-
-                    // Pause to honor the animator's tick frequency specification
-                    long currTime = System.currentTimeMillis();
-                    long remainingWait = animator.interval()
-                            - (currTime - lastTickEnded);
-                    if (remainingWait > 0) {
-                        sleep((int) remainingWait);
-                    }
-
-                    // Ok! We can draw now.
-                    try {
-                        // lock the surface for drawing
-                        canvas = surfaceHolder.lockCanvas(null);
-
-                        //paint the background
-                        if (canvas != null) {
-                            // draw the background
-                            if (flashCount > 0) {
-                                // we are flashing: draw the "flash" color
-                                canvas.drawCircle(getWidth()/2,getHeight()/2,40, flashPaint);
-
-                                // decrement the flash count by the number of milliseconds in
-                                // our interval
-                                flashCount -= animator.interval();
-
-                                // if we've finished, "release" the flash-painting object
-                                if (flashCount <= 0) {
-                                    flashPaint = null;
-                                }
-                            }
-                            else {
-                                // not flashing: draw the normal background color
-                                canvas.drawCircle( getWidth()/2, getHeight()/2, 40, backgroundPaint);
-                            }
-
-                            // tell the animator to draw the next frame
-                            synchronized (surfaceHolder) {
-                                animator.tick(canvas);
-                            }// synchronized
-                        }
-                    }// try
-                    finally {
-                        // release the canvas
-                        if (canvas != null) {
-                            surfaceHolder.unlockCanvasAndPost(canvas);
-                        }
-                    }
-
-                    // Note when this tick ended
-                    lastTickEnded = System.currentTimeMillis();
-
-                }// while
-            }// run
         }
 
 

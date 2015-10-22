@@ -384,7 +384,8 @@
             android:layout_gravity="center"
             android:textColor="#ff000000"
             android:textSize="50dp"
-            android:background="#ffff0000" />
+            android:background="#ffff0000"
+            android:onClick="ROLL"/>
 
         <LinearLayout
             android:orientation="horizontal"

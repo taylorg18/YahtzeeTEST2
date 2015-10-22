@@ -8,11 +8,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import edu.up.cs301.animation.Animator;
+import edu.up.cs301.animation.dice;
 import edu.up.cs301.game.GameMainActivity;
 import edu.up.cs301.game.R;
 import edu.up.cs301.game.infoMsg.GameInfo;
@@ -28,13 +30,16 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  * @author Steven R. Vegdahl 
  * @version July 2013
  */
-public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClickListener, Animator {
+public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClickListener, Animator, View.OnLongClickListener {
 	
 	// the activity under which we're running
 	GameMainActivity myActivity = null;
 	
 	// the game's state
 	TTTState state = null;
+
+
+
 	
 	/**
 	 * constuctor
@@ -77,9 +82,6 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 	};
 
 
-
-
-
 	private static final int[] buttonIndices2 = {
 			R.id.p2_ace,
 			R.id.p2_two,
@@ -107,6 +109,19 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 	private Button[] numberedButtons2;
 
 
+	private Button roll;
+	private dice[] thedice;
+
+	private static final int[] dieID =
+	{
+		R.id.imageButton,
+		R.id.imageButton2,
+		R.id.imageButton3,
+		R.id.imageButton4,
+		R.id.imageButton5,
+	};
+
+
 	/**
 	 * initializes the GUI's button array so that we can access them
 	 * by position
@@ -129,7 +144,22 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 		for (int i = 0; i < numberedButtons2.length; i++) {
 			numberedButtons2[i] =
 					(Button)myActivity.findViewById(buttonIndices2[i]);
+
+
 		}
+
+
+		thedice = new dice[dieID.length];
+
+		// fill the array using the indices in the buttonIndices array
+		for (int i = 0; i < thedice.length; i++) {
+			thedice[i] =
+					(dice) myActivity.findViewById(dieID[i]);
+			thedice[i].setBackgroundColor(Color.WHITE);
+		}
+
+		roll = (Button)myActivity.findViewById(R.id.rollButton);
+		roll.setOnClickListener(this);
 	}
 
 	/**
@@ -191,6 +221,11 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 	public void onClick(View v) {
 		// get the text from the button, which will denote an
 		// integer in the range 7..15
+		if(v == roll)
+		{
+			ROLL(v);
+			return;
+		}
 		String s = ((Button)v).getText().toString();
 		
 		// convert to an integer
@@ -232,6 +267,10 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 
 		for (int i = 0; i < numberedButtons2.length; i++) {
 			numberedButtons2[i].setOnClickListener(this);
+		}
+
+		for (int i = 0; i < thedice.length; i++) {
+			thedice[i].setOnLongClickListener(this);
 		}
 
 
@@ -467,6 +506,34 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
     	*/
     }
 
+	public void ROLL(View view)
+	{
+		for (int i = 0; i < thedice.length; i++) {
+			if(thedice[i].keep == false) {
+				thedice[i].invalidate();
+			}
+		}
+	}
+
+	public boolean onLongClick(View v) {
+
+
+		if(((dice)v).keep) {
+			v.setBackgroundColor(Color.WHITE);
+			((dice)v).keep = false;
+			return false;
+		}
+		else
+		{
+			v.setBackgroundColor(Color.BLUE);
+			((dice)v).keep = true;
+			return true;
+		}
+
+
+
+	}
+
 	public int interval() {
 		return 0;
 	}
@@ -491,9 +558,7 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 
 	}
 
-	public void onLongClick(View v) {
 
-	}
 //////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
