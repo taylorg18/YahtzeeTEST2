@@ -1,15 +1,9 @@
-package edu.up.cs301.tictactoe;
+package edu.up.cs301.Yahtzee;
 
 import android.app.Activity;
-import android.app.Application;
-import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.app.ActionBar;
 
 import edu.up.cs301.game.R;
 

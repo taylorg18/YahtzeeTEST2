@@ -69,17 +69,26 @@ public class dice extends ImageButton{
             // Tell the OS that *yes* I will draw stuff
             setWillNotDraw(false);
             keep = false;
+            roll();
 
 
 
         }
+
+        public void roll()
+        {
+            if(this.keep == false) {
+                dieNum = (int) (Math.random() * 6 + 1);
+            }
+        }
+
 
 
         public void onDraw(Canvas g)
         {
             Paint black = new Paint();
             black.setColor(Color.BLACK);
-            dieNum = (int)(Math.random()*6 + 1);
+
             switch (dieNum)
             {
                 case 1: g.drawCircle(g.getHeight()/2,g.getWidth()/2,20, black);

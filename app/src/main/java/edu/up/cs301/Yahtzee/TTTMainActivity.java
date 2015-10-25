@@ -1,4 +1,4 @@
-package edu.up.cs301.tictactoe;
+package edu.up.cs301.Yahtzee;
 
 import android.content.Intent;
 import android.view.View;
@@ -66,7 +66,7 @@ public class TTTMainActivity extends GameMainActivity {
 		});
 
 		// Create a game configuration class for Tic-tac-toe
-		GameConfig defaultConfig = new GameConfig(playerTypes, 2,2, "Tic-Tac-Toe", PORT_NUMBER);
+		GameConfig defaultConfig = new GameConfig(playerTypes, 2,2, "Yahtzee", PORT_NUMBER);
 
 		// Add the default players
 		defaultConfig.addPlayer("Human", 0); // yellow-on-blue GUI

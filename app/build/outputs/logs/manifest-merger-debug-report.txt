@@ -39,12 +39,12 @@ ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\A
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:14:9-45
 	android:theme
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:16:9-40
-activity#edu.up.cs301.tictactoe.TTTMainActivity
+activity#edu.up.cs301.Yahtzee.TTTMainActivity
 ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:18:9-24:20
 	android:configChanges
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:19:13-83
 	android:name
-		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:18:19-72
+		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:18:19-70
 intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
 ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:20:13-23:29
 action#android.intent.action.MAIN
@@ -55,9 +55,9 @@ category#android.intent.category.LAUNCHER
 ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:22:17-77
 	android:name
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:22:27-74
-activity#edu.up.cs301.tictactoe.Pause
+activity#edu.up.cs301.Yahtzee.Pause
 ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:28:9-31:20
 	android:label
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:30:13-34
 	android:name
-		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:29:13-56
+		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:29:13-54
