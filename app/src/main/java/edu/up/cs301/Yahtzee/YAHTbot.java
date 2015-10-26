@@ -10,7 +10,7 @@ import edu.up.cs301.game.GameComputerPlayer;
  * @version July 2013
  */
 
-public abstract class TTTComputerPlayer extends GameComputerPlayer
+public abstract class YAHTbot extends GameComputerPlayer
     implements TTTPlayer {
     /**
      * instance variable that tells which piece am I playing ('X' or 'O').
@@ -20,11 +20,11 @@ public abstract class TTTComputerPlayer extends GameComputerPlayer
     protected char piece;
 
     /**
-     * Constructor for objects of class TTTComputerPlayer
+     * Constructor for objects of class YAHTbot
      */
-    public TTTComputerPlayer(String name) {
+    public YAHTbot(String name) {
         // invoke superclass constructor
         super(name);
     }// constructor
     
-}// class TTTComputerPlayer
+}// class YAHTbot

@@ -11,7 +11,7 @@ import edu.up.cs301.game.infoMsg.GameState;
  * @author Steven R. Vegdahl 
  * @version July 2013
  */
-public class TTTState extends GameState
+public class YAHState extends GameState
 {
 	private static final long serialVersionUID = 7552321013488624386L;
 
@@ -26,9 +26,9 @@ public class TTTState extends GameState
     private int playerToMove;
 
     /**
-     * Constructor for objects of class TTTState
+     * Constructor for objects of class YAHState
      */
-    public TTTState()
+    public YAHState()
     {
         // initialize the state to be a brand new game
         board = new char[3][3];
@@ -43,12 +43,12 @@ public class TTTState extends GameState
     }// constructor
     
     /**
-     * Copy constructor for class TTTState
+     * Copy constructor for class YAHState
      *  
      * @param original
-     * 		the TTTState object that we want to clong
+     * 		the YAHState object that we want to clong
      */
-    public TTTState(TTTState original)
+    public YAHState(YAHState original)
     {
     	// create a new 3x3 array, and copy the values from
     	// the original

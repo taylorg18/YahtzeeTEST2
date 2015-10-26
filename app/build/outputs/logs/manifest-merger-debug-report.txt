@@ -34,7 +34,7 @@ ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\A
 application
 ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:13:5-33:19
 	android:label
-		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:15:9-41
+		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:15:9-32
 	android:icon
 		ADDED from C:\Users\Grayson\Documents\CS 301\TESTING\YahtzeeTEST2\app\src\main\AndroidManifest.xml:14:9-45
 	android:theme

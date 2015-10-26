@@ -117,14 +117,15 @@ public final class R {
     }
     public static final class layout {
         public static final int activity_pause=0x7f030000;
-        public static final int game_config_main=0x7f030001;
-        public static final int game_config_tabhost=0x7f030002;
-        public static final int game_local_tab=0x7f030003;
-        public static final int game_no_gui=0x7f030004;
-        public static final int game_player_list_row=0x7f030005;
-        public static final int game_remote_tab=0x7f030006;
-        public static final int ttt_human_player1and2=0x7f030007;
-        public static final int ttt_human_player3=0x7f030008;
+        public static final int activity_scoreboard=0x7f030001;
+        public static final int game_config_main=0x7f030002;
+        public static final int game_config_tabhost=0x7f030003;
+        public static final int game_local_tab=0x7f030004;
+        public static final int game_no_gui=0x7f030005;
+        public static final int game_player_list_row=0x7f030006;
+        public static final int game_remote_tab=0x7f030007;
+        public static final int ttt_human_player1and2=0x7f030008;
+        public static final int ttt_human_player3=0x7f030009;
     }
     public static final class menu {
         public static final int game_main=0x7f080000;

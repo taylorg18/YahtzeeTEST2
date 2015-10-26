@@ -1,15 +1,11 @@
 package edu.up.cs301.Yahtzee;
 
-import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.ImageButton;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -21,8 +17,6 @@ import edu.up.cs301.game.infoMsg.GameInfo;
 import edu.up.cs301.game.infoMsg.IllegalMoveInfo;
 import edu.up.cs301.game.infoMsg.NotYourTurnInfo;
 
-import static android.support.v4.app.ActivityCompat.startActivity;
-
 /**
  * A human (i.e., GUI) version of a tic-tac-toe player that gives the user
  * the "game of 33" view.
@@ -30,24 +24,25 @@ import static android.support.v4.app.ActivityCompat.startActivity;
  * @author Steven R. Vegdahl 
  * @version July 2013
  */
-public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClickListener, Animator, View.OnLongClickListener {
+public class YAHHumanPlayer1 extends TTTHumanPlayer implements TTTPlayer, OnClickListener, Animator, View.OnLongClickListener {
 
 	// the activity under which we're running
 	GameMainActivity myActivity = null;
 
 	// the game's state
-	TTTState state = null;
+	YAHState state = null;
 
 	int round;
 	int rollNum;
-
+	private int[] scores = new int[13];
+	private int yahtzeeCount;
 
 	/**
 	 * constuctor
 	 *
 	 * @param name the player's name
 	 */
-	public TTTHumanPlayer3(String name) {
+	public YAHHumanPlayer1(String name) {
 		super(name);
 	}
 
@@ -157,8 +152,8 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 
 		// update the TextFields that contain the players' names
 		updatePlayerNames();
-		round = 1;
-		rollNum = 1;
+		round = 0;
+		rollNum = 0;
 	}
 
 	/**
@@ -188,12 +183,22 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 			ROLL(v);
 			return;
 		}
-		String s = ((Button) v).getText().toString();
+		else {
+			String s = ((Button) v).getText().toString();
 
-		// convert to an integer
-		int val = Integer.parseInt(s);
-		v.setBackgroundColor(Color.MAGENTA);
-		v.setEnabled(false);
+			// convert to an integer
+			int val = Integer.parseInt(s);
+			v.setBackgroundColor(Color.MAGENTA);
+			v.setEnabled(false);
+			rollNum = 0;
+			for(int j = 0; j < thedice.length; j++)
+			{
+				thedice[j].keep = false;
+				thedice[j].setBackgroundColor(Color.WHITE);
+			}
+
+
+		}
 
 	}
 
@@ -257,13 +262,13 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 		if (info instanceof IllegalMoveInfo || info instanceof NotYourTurnInfo) {
 			// if the move is out of turn or otherwise illegal, flash the screen
 			flash(Color.RED, 50);
-		} else if (!(info instanceof TTTState)) {
-			// if it's not a TTTState object, ignore
+		} else if (!(info instanceof YAHState)) {
+			// if it's not a YAHState object, ignore
 			return;
 		} else {
 			// update the state variable, then update the GUI to reflect the updated
 			// state
-			state = (TTTState) info;
+			state = (YAHState) info;
 
 		}
 	}
@@ -289,7 +294,7 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 	}
 
 	public void ROLL(View view) {
-		if (rollNum < 4)
+		if (rollNum < 3)
 		{
 			for (int i = 0; i < thedice.length; i++) {
 				if (thedice[i].keep == false) {
@@ -299,11 +304,13 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 				}
 			}
 			rollNum++;
+			upateButtons();
 		}
 
 		else
 
 		{
+			upateButtons();
 			return;
 		}
 
@@ -311,7 +318,10 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 
 	public boolean onLongClick(View v) {
 
-
+		if(rollNum == 0)
+		{
+			return false;
+		}
 		if(((dice)v).keep) {
 			v.setBackgroundColor(Color.WHITE);
 			((dice)v).keep = false;
@@ -327,6 +337,34 @@ public class TTTHumanPlayer3 extends TTTHumanPlayer implements TTTPlayer, OnClic
 
 
 
+	}
+
+
+
+	public void upateButtons()
+	{
+		int displayCount;
+		for(int i = 0; i < numberedButtons1.length; i++)
+		{
+			displayCount = 0;
+			if(i<6)
+			{
+				for(int j = 0; j < thedice.length; j++)
+				{
+					if(thedice[j].dieNum == i+1)
+					{
+						displayCount = displayCount + thedice[j].dieNum;
+					}
+				}
+				if(numberedButtons1[i].isEnabled()) {
+					numberedButtons1[i].setText("" + displayCount);
+				}
+			}
+			else
+			{
+
+			}
+		}
 	}
 
 	public int interval() {

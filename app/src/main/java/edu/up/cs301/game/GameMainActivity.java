@@ -104,7 +104,7 @@ View.OnClickListener {
 	 * 
 	 * Creates a new game that runs on the server tablet. For example, if
 	 * you were creating tic-tac-toe, you would implement this method to return
-	 * an instance of your TTTLocalGame class which, in turn, would be a
+	 * an instance of your YAHLocalGame class which, in turn, would be a
 	 * subclass of {@link LocalGame}.
 	 * 
 	 * @return a new, game-specific instance of a sub-class of the LocalGame

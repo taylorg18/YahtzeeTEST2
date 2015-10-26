@@ -15,7 +15,7 @@ import android.graphics.Point;
  * @version July 2013
  * 
  */
-public class TTTComputerPlayer2 extends TTTComputerPlayer
+public class YAHTbotHARD extends YAHTbot
 {
 	/**
 	 * constructor for a computer player
@@ -23,7 +23,7 @@ public class TTTComputerPlayer2 extends TTTComputerPlayer
 	 * @param name
 	 * 		the player's name
 	 */
-	public TTTComputerPlayer2(String name) {
+	public YAHTbotHARD(String name) {
 		// invoke superclass constructor
 		super(name);
 	}// constructor
@@ -47,10 +47,10 @@ public class TTTComputerPlayer2 extends TTTComputerPlayer
 	@Override
 	protected void receiveInfo(GameInfo info) {
 
-		// if it's not a TTTState message, ignore it; otherwise
+		// if it's not a YAHState message, ignore it; otherwise
 		// cast it
-		if (!(info instanceof TTTState)) return;
-		TTTState myState = (TTTState)info;
+		if (!(info instanceof YAHState)) return;
+		YAHState myState = (YAHState)info;
 
 		// if it's not our move, ignore it
 		if (myState.getWhoseMove() != this.playerNum) return;
@@ -113,7 +113,7 @@ public class TTTComputerPlayer2 extends TTTComputerPlayer
 	 * @return  If a winning move was found, a Point object containing
 	 *   the coordinates.  If no winning move was found, null.
 	 */
-	private Point findWin(TTTState state, char thePiece) {
+	private Point findWin(YAHState state, char thePiece) {
 
 		// the winning move--initialized to null because we haven't found
 		// one yet
@@ -171,7 +171,7 @@ public class TTTComputerPlayer2 extends TTTComputerPlayer
 	 *   the coordinates.  If no winning move was found, null.
 	 */
 	// helper method to find a winning move
-	private Point helpFindWin(TTTState state, char thePiece, int rowStart,
+	private Point helpFindWin(YAHState state, char thePiece, int rowStart,
 			int colStart, int rowDelta, int colDelta) {
 
 		// our starting position

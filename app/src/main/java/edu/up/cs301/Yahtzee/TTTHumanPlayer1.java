@@ -51,7 +51,7 @@ public class TTTHumanPlayer1 extends TTTHumanPlayer implements Animator {
 	 */
 
 	// the game's state
-	protected TTTState state;
+	protected YAHState state;
 
 	// the current activity
 	private Activity myActivity;
@@ -91,12 +91,12 @@ public class TTTHumanPlayer1 extends TTTHumanPlayer implements Animator {
 			// if the move was out of turn or otherwise illegal, flash the screen
 			surface.flash(Color.RED, 50);
 		}
-		else if (!(info instanceof TTTState))
-			// if we do not have a TTTState, ignore
+		else if (!(info instanceof YAHState))
+			// if we do not have a YAHState, ignore
 			return;
 		else {
 			// update our 'state' variable with the new state
-			this.state = (TTTState) info;
+			this.state = (YAHState) info;
 			Log.i("human player", "receiving");
 		}
 	}

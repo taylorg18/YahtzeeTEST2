@@ -26,7 +26,7 @@ public class dice extends ImageButton{
         private int flashCount; // counts down ticks for background-flash
         private Paint flashPaint; // has color for background flash
         public boolean keep;
-        int dieNum;
+        public int dieNum;
 
 
         /**

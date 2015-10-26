@@ -30,7 +30,7 @@ public class TTTMainActivity extends GameMainActivity {
 		// Define the allowed player types
 		ArrayList<GamePlayerType> playerTypes = new ArrayList<GamePlayerType>();
 		
-		// yellow-on-blue GUI
+		/*// yellow-on-blue GUI
 		playerTypes.add(new GamePlayerType("Local Human Player (blue-yellow)") {
 			public GamePlayer createPlayer(String name) {
 				return new TTTHumanPlayer1(name);
@@ -43,25 +43,25 @@ public class TTTMainActivity extends GameMainActivity {
 				return new TTTHumanPlayer2(name);
 			}
 		});
-		
+		*/
 		// game of 33
 		playerTypes.add(new GamePlayerType("Local Human Player (Yahtzee)") {
 			public GamePlayer createPlayer(String name) {
-				return new TTTHumanPlayer3(name);
+				return new YAHHumanPlayer1(name);
 			}
 		});
 		
 		// dumb computer player
-		playerTypes.add(new GamePlayerType("Computer Player (dumb)") {
+		playerTypes.add(new GamePlayerType("YAHTbot - easy") {
 			public GamePlayer createPlayer(String name) {
-				return new TTTComputerPlayer1(name);
+				return new YAHTbotEASY(name);
 			}
 		});
 		
 		// smarter computer player
-		playerTypes.add(new GamePlayerType("Computer Player (smart)") {
+		playerTypes.add(new GamePlayerType("YAHTbot - hard") {
 			public GamePlayer createPlayer(String name) {
-				return new TTTComputerPlayer2(name);
+				return new YAHTbotHARD(name);
 			}
 		});
 
@@ -91,7 +91,7 @@ public class TTTMainActivity extends GameMainActivity {
 	 */
 	@Override
 	public LocalGame createLocalGame() {
-		return new TTTLocalGame();
+		return new YAHLocalGame();
 	}
 
 
@@ -103,6 +103,12 @@ public class TTTMainActivity extends GameMainActivity {
 		Intent pause = new Intent(this, Pause.class);
 		startActivity(pause);
 
+	}
+
+	public void scoreBoard(View v)
+	{
+		Intent scores = new Intent(this,ScoreBoard.class);
+		startActivity(scores);
 	}
 
 }

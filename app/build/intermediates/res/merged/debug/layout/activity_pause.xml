@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         android:text="Quit"
         android:id="@+id/quit"
-        android:onClick="quitClick"
+        android:onClick="doFinish"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="235dp" />
